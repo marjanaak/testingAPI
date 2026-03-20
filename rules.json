@@ -1,14 +1,52 @@
 [
   {
     "chunk_number": 1,
-    "rules": ""
+    "rules": []
   },
   {
     "chunk_number": 2,
-    "rules": ""
+    "rules": [
+      {
+        "rule_name": "minimum walkway width",
+        "value": 800,
+        "unit": "mm",
+        "comparator": "=",
+        "condition": "800 mm",
+        "section": "DC/1/4",
+        "checkable_in_model": true
+      },
+      {
+        "rule_name": "temporary works depth",
+        "value": 2,
+        "unit": "m",
+        "comparator": "=",
+        "condition": "2 m",
+        "section": "DC/1/5",
+        "checkable_in_model": true
+      }
+    ]
   },
   {
     "chunk_number": 3,
-    "rules": ""
+    "rules": [
+      {
+        "rule_name": "Project datum offset",
+        "value": 100,
+        "unit": "m",
+        "comparator": "=",
+        "condition": "Project datum shall be 100 m below the Singapore Land Authority Precise Levelling Datum (PLD)",
+        "section": "1.5.1 Levels",
+        "checkable_in_model": true
+      },
+      {
+        "rule_name": "Blinding concrete minimum thickness",
+        "value": 50,
+        "unit": "mm",
+        "comparator": ">=",
+        "condition": "Blinding concrete thickness shall be at least 50 mm",
+        "section": "1.9 BLINDING",
+        "checkable_in_model": true
+      }
+    ]
   }
 ]

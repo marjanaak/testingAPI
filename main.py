@@ -1,6 +1,7 @@
 import os
 import PyPDF2
 import json
+import time
 from pathlib import Path
 
 # from openai import OpenAI  ## if using OpenAI's official library
@@ -21,7 +22,7 @@ SKIP_FIRST_PAGES = 24
 MAX_CHUNKS_TO_PROCESS = 3
 
 # Approx chunk size in characters
-CHUNK_SIZE = 12000
+CHUNK_SIZE = 6000
 
 
 def extract_pdf_text(pdf_path: str, skip_first_pages: int = 0) -> str:
@@ -53,7 +54,7 @@ def extract_pdf_text(pdf_path: str, skip_first_pages: int = 0) -> str:
     return "\n".join(text_parts)
 
 
-def chunk_text(text: str, chunk_size: int = 12000) -> list[str]:
+def chunk_text(text: str, chunk_size: int = 6000) -> list[str]:
     chunks = []
     start = 0
     text_length = len(text)
@@ -94,43 +95,44 @@ def chunk_text(text: str, chunk_size: int = 12000) -> list[str]:
 
 #    return response.choices[0].message.content or ""     ## if using OpenAI's official library
 
-def summarize_chunk(chunk: str, chunk_number: int) -> str:
-    import os
-    from dotenv import load_dotenv
-    load_dotenv()
 
+def summarize_chunk(chunk: str, chunk_number: int):
+    load_dotenv()
     api_key = os.getenv("OPENROUTER_API_KEY")
+    prompt = get_rule_extraction_prompt(chunk, chunk_number)
 
     url = "https://openrouter.ai/api/v1/chat/completions"
 
-    prompt = get_rule_extraction_prompt(chunk, chunk_number)
-
     headers = {
         "Authorization": f"Bearer {api_key}",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "HTTP-Referer": "http://localhost",
+        "X-Title": "testingAPI"
     }
 
     data = {
-        "model": "openai/gpt-oss-120b:free",
+        "model": "openrouter/free",
         "messages": [
             {"role": "user", "content": prompt}
         ]
     }
 
-    response = requests.post(url, headers=headers, json=data)
+    for attempt in range(3):
+        response = requests.post(url, headers=headers, json=data, timeout=120)
 
-    if response.status_code != 200:
-        print("Error:", response.text)
-        return ""
+        if response.status_code == 200:
+            result = response.json()
+            content = result["choices"][0]["message"]["content"]
+            try:
+                return json.loads(content)
+            except Exception:
+                print("Failed to parse JSON, raw output returned.")
+                return content
 
-    result = response.json()
-    content = result["choices"][0]["message"]["content"]
+        print(f"Attempt {attempt + 1} failed: {response.text}")
+        time.sleep(5)
 
-    try:
-        return json.loads(content)
-    except:
-        print("⚠️ Failed to parse JSON, returning raw text")
-    return content
+    return []
 
 def save_json(data: list, output_path: str) -> None:
     with open(output_path, "w", encoding="utf-8") as file:
