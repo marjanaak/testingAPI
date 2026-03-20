@@ -5,46 +5,180 @@
   },
   {
     "chunk_number": 2,
-    "rules": [
-      {
-        "rule_name": "minimum walkway width",
-        "value": 800,
-        "unit": "mm",
-        "comparator": "=",
-        "condition": "800 mm",
-        "section": "DC/1/4",
-        "checkable_in_model": true
-      },
-      {
-        "rule_name": "temporary works depth",
-        "value": 2,
-        "unit": "m",
-        "comparator": "=",
-        "condition": "2 m",
-        "section": "DC/1/5",
-        "checkable_in_model": true
-      }
-    ]
+    "rules": []
   },
   {
     "chunk_number": 3,
     "rules": [
       {
-        "rule_name": "Project datum offset",
-        "value": 100,
-        "unit": "m",
+        "rule_name": "Track gauge",
+        "value": 1435,
+        "unit": "mm",
         "comparator": "=",
-        "condition": "Project datum shall be 100 m below the Singapore Land Authority Precise Levelling Datum (PLD)",
-        "section": "1.5.1 Levels",
+        "condition": "distance between inside face of rails at gauge points",
+        "section": "2.2.1.1",
         "checkable_in_model": true
       },
       {
-        "rule_name": "Blinding concrete minimum thickness",
-        "value": 50,
-        "unit": "mm",
+        "rule_name": "Horizontal curve radius - above ground desirable minimum",
+        "value": 500,
+        "unit": "m",
         "comparator": ">=",
-        "condition": "Blinding concrete thickness shall be at least 50 mm",
-        "section": "1.9 BLINDING",
+        "condition": "above ground MRT system",
+        "section": "2.2.1.7",
+        "checkable_in_model": true
+      },
+      {
+        "rule_name": "Horizontal curve radius - above ground minimum",
+        "value": 400,
+        "unit": "m",
+        "comparator": ">=",
+        "condition": "above ground MRT system",
+        "section": "2.2.1.7",
+        "checkable_in_model": true
+      },
+      {
+        "rule_name": "Horizontal curve radius - above ground absolute minimum",
+        "value": 190,
+        "unit": "m",
+        "comparator": ">=",
+        "condition": "above ground MRT system",
+        "section": "2.2.1.7",
+        "checkable_in_model": true
+      },
+      {
+        "rule_name": "Horizontal curve radius - underground desirable minimum",
+        "value": 400,
+        "unit": "m",
+        "comparator": ">=",
+        "condition": "underground MRT system",
+        "section": "2.2.1.7",
+        "checkable_in_model": true
+      },
+      {
+        "rule_name": "Horizontal curve radius - underground minimum",
+        "value": 300,
+        "unit": "m",
+        "comparator": ">=",
+        "condition": "underground MRT system",
+        "section": "2.2.1.7",
+        "checkable_in_model": true
+      },
+      {
+        "rule_name": "Horizontal curve radius - underground absolute minimum",
+        "value": 190,
+        "unit": "m",
+        "comparator": ">=",
+        "condition": "underground MRT system",
+        "section": "2.2.1.7",
+        "checkable_in_model": true
+      },
+      {
+        "rule_name": "Platform end clearance distance",
+        "value": 20,
+        "unit": "m",
+        "comparator": ">=",
+        "condition": "distance from platform end to start of curve/transition/turnout",
+        "section": "2.2.1.8",
+        "checkable_in_model": true
+      },
+      {
+        "rule_name": "Pure circular arc length - desirable minimum",
+        "value": 50,
+        "unit": "m",
+        "comparator": ">=",
+        "condition": "length of pure circular arc between transitions",
+        "section": "2.2.1.11",
+        "checkable_in_model": true
+      },
+      {
+        "rule_name": "Pure circular arc length - absolute minimum",
+        "value": 20,
+        "unit": "m",
+        "comparator": ">=",
+        "condition": "length of pure circular arc between transitions",
+        "section": "2.2.1.11",
+        "checkable_in_model": true
+      },
+      {
+        "rule_name": "Straight track length between curves - desirable minimum",
+        "value": 50,
+        "unit": "m",
+        "comparator": ">=",
+        "condition": "length of straight track between ends of curves or transitions",
+        "section": "2.2.1.12",
+        "checkable_in_model": true
+      },
+      {
+        "rule_name": "Straight track length between curves - absolute minimum",
+        "value": 20,
+        "unit": "m",
+        "comparator": ">=",
+        "condition": "length of straight track between ends of curves or transitions",
+        "section": "2.2.1.12",
+        "checkable_in_model": true
+      },
+      {
+        "rule_name": "Cant gradient absolute maximum",
+        "value": 0.002,
+        "unit": "ratio",
+        "comparator": "<=",
+        "condition": "cant gradient (not cant deficiency)",
+        "section": "2.2.3.6",
+        "checkable_in_model": true
+      },
+      {
+        "rule_name": "Cant gradient minimum",
+        "value": 0.001,
+        "unit": "ratio",
+        "comparator": ">=",
+        "condition": "cant gradient (not cant deficiency)",
+        "section": "2.2.3.6",
+        "checkable_in_model": true
+      },
+      {
+        "rule_name": "Cant gradient desirable",
+        "value": 0.00133,
+        "unit": "ratio",
+        "comparator": "=",
+        "condition": "cant gradient (not cant deficiency)",
+        "section": "2.2.3.6",
+        "checkable_in_model": true
+      },
+      {
+        "rule_name": "Applied cant concrete track desirable maximum",
+        "value": 125,
+        "unit": "mm",
+        "comparator": "<=",
+        "condition": "concrete track",
+        "section": "2.2.2.13",
+        "checkable_in_model": true
+      },
+      {
+        "rule_name": "Applied cant concrete track absolute maximum",
+        "value": 150,
+        "unit": "mm",
+        "comparator": "<=",
+        "condition": "concrete track",
+        "section": "2.2.2.13",
+        "checkable_in_model": true
+      },
+      {
+        "rule_name": "Applied cant ballasted track desirable maximum",
+        "value": 110,
+        "unit": "mm",
+        "comparator": "<=",
+        "condition": "ballasted track",
+        "section": "2.2.2.13",
+        "checkable_in_model": true
+      },
+      {
+        "rule_name": "Applied cant ballasted track absolute maximum",
+        "value": 125,
+        "unit": "mm",
+        "comparator": "<=",
+        "condition": "ballasted track",
+        "section": "2.2.2.13",
         "checkable_in_model": true
       }
     ]

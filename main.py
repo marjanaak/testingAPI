@@ -22,7 +22,7 @@ SKIP_FIRST_PAGES = 24
 MAX_CHUNKS_TO_PROCESS = 3
 
 # Approx chunk size in characters
-CHUNK_SIZE = 6000
+CHUNK_SIZE = 12000
 
 
 def extract_pdf_text(pdf_path: str, skip_first_pages: int = 0) -> str:
@@ -54,7 +54,7 @@ def extract_pdf_text(pdf_path: str, skip_first_pages: int = 0) -> str:
     return "\n".join(text_parts)
 
 
-def chunk_text(text: str, chunk_size: int = 6000) -> list[str]:
+def chunk_text(text: str, chunk_size: int = 12000) -> list[str]:
     chunks = []
     start = 0
     text_length = len(text)
